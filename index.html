@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>FocusFlow</title>
+<meta name="theme-color" content="#b9a6e8">
+<meta name="description" content="Plan, focus, organise and reflect — a private, offline-first study and life organiser.">
+<script>
+/* Open the app with ?reset at the end of the address to clear the offline copy (your data is kept) */
+if (/[?&]reset\b/.test(location.search)) {
+  Promise.all([navigator.serviceWorker ? navigator.serviceWorker.getRegistrations().then(r => Promise.all(r.map(x => x.unregister()))) : 0,
+    window.caches ? caches.keys().then(k => Promise.all(k.map(x => caches.delete(x)))) : 0])
+    .finally(() => location.replace(location.pathname));
+}
+</script>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="FocusFlow">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preload" href="fonts/fredoka.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/nunito.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <nav id="nav" aria-label="Main navigation"></nav>
+  <main id="main"><div class="page"><p class="mut">Loading FocusFlow…</p></div></main>
+</div>
+<div id="toasts" aria-live="polite"></div>
+<script src="js/core.js"></script>
+<script src="js/planner.js"></script>
+<script src="js/life.js"></script>
+<script src="js/wellness.js"></script>
+<script src="js/spirit.js"></script>
+<script src="js/sync.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
